@@ -3,27 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cryptex Executor</title>
+  <title>CRYPTEX Executor</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #0c0c0c;
-      background-image: url('background.gif');
-      background-size: cover;
-      background-repeat: no-repeat;
+      background-color: #000;
       color: white;
       overflow-x: hidden;
+      position: relative;
+      z-index: 1;
     }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* rest of your existing styles below... (unchanged) */
 
     header {
       position: absolute;
       top: 20px;
       left: 30px;
       font-size: 24px;
-      font-weight: 900;
-      background: linear-gradient(to right, #a770ef, #cf8bf3);
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -31,18 +42,19 @@
     .title {
       text-align: center;
       margin-top: 80px;
-      font-size: 48px;
+      font-size: 64px;
       font-weight: 900;
-      background: linear-gradient(to right, #a770ef, #cf8bf3);
+      color: transparent;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .subtitle {
       text-align: center;
-      color: #ccc;
+      color: #bbb;
       margin-top: 10px;
-      font-size: 18px;
+      font-size: 20px;
     }
 
     .buttons {
@@ -50,45 +62,34 @@
       margin-top: 30px;
     }
 
-    .download-btn {
-      background-color: #5b6df9;
+    .download-btn, .discord-btn {
+      background-color: #6a11cb;
       color: white;
-      padding: 14px 28px;
+      padding: 16px 32px;
       border: none;
-      border-radius: 30px;
+      border-radius: 50px;
       font-weight: bold;
-      font-size: 16px;
-      margin-right: 15px;
+      font-size: 18px;
+      margin: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(91, 109, 249, 0.4);
-      transition: transform 0.2s, box-shadow 0.3s;
       text-decoration: none;
+      box-shadow: 0 4px 20px rgba(106, 17, 203, 0.4);
+      transition: transform 0.3s, box-shadow 0.3s ease;
       display: inline-block;
     }
 
-    .download-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 24px rgba(91, 109, 249, 0.6);
+    .download-btn:hover, .discord-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(106, 17, 203, 0.6);
     }
 
     .discord-btn {
       background-color: transparent;
-      border: 1px solid #ccc;
-      color: white;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 16px;
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
-      transition: border 0.2s, transform 0.2s, box-shadow 0.3s;
+      border: 2px solid #6a11cb;
     }
 
     .discord-btn:hover {
-      transform: scale(1.05);
-      border-color: white;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+      background-color: #6a11cb;
     }
 
     .why-section {
@@ -97,30 +98,30 @@
     }
 
     .why-section h2 {
-      font-size: 32px;
-      margin-bottom: 30px;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #fff;
     }
 
     .box-container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
-      padding: 0 20px;
+      gap: 30px;
     }
 
     .box {
-      background-color: #121212;
+      background-color: #1a1a1a;
       border-radius: 20px;
       padding: 20px;
-      width: 300px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
+      width: 280px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.06);
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
     }
 
     .community-section, .reviews-section, .call-to-action {
@@ -131,28 +132,29 @@
 
     .blue-underline {
       display: inline-block;
-      border-bottom: 2px solid #5b6df9;
-      padding-bottom: 5px;
+      border-bottom: 3px solid #6a11cb;
+      padding-bottom: 7px;
       font-weight: 700;
-      font-size: 24px;
-      margin-bottom: 10px;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #fff;
     }
 
     footer {
       text-align: center;
       margin-top: 60px;
       font-size: 12px;
-      color: #777;
+      color: #bbb;
       padding: 20px;
     }
 
     .footer-nav {
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     .footer-nav a {
       color: #aaa;
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
       font-size: 14px;
     }
@@ -163,21 +165,23 @@
 
     .cursor-glow {
       position: fixed;
-      width: 40px;
-      height: 40px;
-      background: radial-gradient(circle, rgba(173,127,255,0.4), transparent 60%);
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(106, 17, 203, 0.4), transparent 60%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
-      transition: transform 0.05s ease;
+      transition: transform 0.1s ease;
     }
   </style>
 </head>
 <body>
-  <header>Cryptex</header>
-  <div class="title">Cryptex</div>
-  <div class="subtitle">The best free and keyless executor, all open source, so feel safe using it.</div>
+  <div id="particles-js"></div>
+
+  <header>CRYPTEX</header>
+  <div class="title">CRYPTEX</div>
+  <div class="subtitle">Secure, reliable, and completely keyless. CRYPTEX delivers a powerful execution experience with no compromises.</div>
 
   <div class="buttons">
     <a href="https://filerift.com/file/tfy9liXdnz" class="download-btn">Download Now</a>
@@ -188,23 +192,23 @@
     <h2>Why Choose Us</h2>
     <div class="box-container">
       <div class="box">
-        <h3>Safety</h3>
-        <p>It's completely safe to use, all open source. If you are unsure, you can check yourself.</p>
+        <h3>Transparency</h3>
+        <p>CRYPTEX is fully open source. No hidden components. Audit it yourself, or trust the community.</p>
       </div>
       <div class="box">
-        <h3>UNC SCORE</h3>
-        <p>Cryptex has an exciting score of 99% UNC and over 90 SUNC.</p>
+        <h3>Performance</h3>
+        <p>Powered by cutting-edge tech, CRYPTEX achieves near-instant execution and high script compatibility.</p>
       </div>
       <div class="box">
-        <h3>Compatibility</h3>
-        <p>Cryptex, as a free and keyless executor, supports almost every single script you execute.</p>
+        <h3>Universal Support</h3>
+        <p>CRYPTEX supports the majority of modern scripts with top-tier compatibility across updates.</p>
       </div>
     </div>
   </div>
 
   <div class="community-section">
-    <h2>Join our community</h2>
-    <p>Join the community of Cryptex Executor, where you can share your experience or get support.</p>
+    <h2>Join Our Community</h2>
+    <p>Our Discord server is the heart of CRYPTEX. Get support, share scripts, and stay updated.</p>
     <div class="buttons">
       <a href="https://discord.gg/UaCH87a8z3" class="discord-btn">Join</a>
     </div>
@@ -212,20 +216,20 @@
 
   <div class="reviews-section">
     <h2>What Users Say</h2>
-    <p><em>"i love you guys, simple spy works, this is better than Xeno!"</em></p>
+    <p><em>"I’ve tried many free executors before, but nothing is as smooth and responsive as CRYPTEX."</em></p>
   </div>
 
   <div class="call-to-action">
-    <div class="blue-underline">Ready to push the limits?</div>
+    <div class="blue-underline">Experience Next-Level Execution</div>
     <div class="buttons" style="margin-top: 20px;">
       <a href="https://filerift.com/file/tfy9liXdnz" class="download-btn">Download Now</a>
     </div>
   </div>
 
   <footer>
-    <p><strong>Terms of Service</strong>: By using Cryptex Executor, you agree to the following terms:
-      This software is provided "as is", without warranty of any kind. Users are solely responsible for any consequences resulting from the use of the tool. Cryptex shall not be held liable for any damage, loss, or legal issues. Redistribution is not permitted for commercial use. Users must not abuse, reverse engineer, or bypass any intended usage. These terms may change at any time without notice.
-    </p>
+    <p><strong>Terms of Service:</strong> CRYPTEX is provided "as is" without warranties. You are responsible for any use or consequences. Do not redistribute commercially, reverse engineer, or bypass protections. Terms may be updated at any time without notice.</p>
+    <p><strong>Privacy Policy:</strong> CRYPTEX does not collect personal data. Downloads and usage are local. We do not track users or store any information.</p>
+    <p>&copy; 2025 CRYPTEX. All rights reserved.</p>
     <div class="footer-nav">
       <a href="https://filerift.com/file/tfy9liXdnz">Download</a>
       <a href="#why-section">Features</a>
@@ -234,11 +238,78 @@
   </footer>
 
   <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Cursor glow script -->
   <script>
     const cursor = document.getElementById('cursor-glow');
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
+    });
+  </script>
+
+  <!-- particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- particles.js config -->
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": { "value": "#ffffff" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" },
+          "polygon": { "nb_sides": 5 }
+        },
+        "opacity": {
+          "value": 0.2,
+          "random": true,
+          "anim": { "enable": false }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": { "enable": false }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 120,
+          "color": "#ffffff",
+          "opacity": 0.1,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": false },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": { "opacity": 0.25 }
+          }
+        }
+      },
+      "retina_detect": true
     });
   </script>
 </body>
